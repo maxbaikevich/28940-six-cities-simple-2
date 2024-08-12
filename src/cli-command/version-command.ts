@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import { CliCommandInterface } from './cli-command.interface.js';
 
 export default class VersionCommand implements CliCommandInterface {
-  public readonly name = '--versoin';
+  public readonly name = '--version';
   private readVersion(): string {
     const contentPageJSON = readFileSync('./package.json', 'utf-8');
     const content = JSON.parse(contentPageJSON);
