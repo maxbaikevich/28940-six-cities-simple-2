@@ -37,16 +37,16 @@
         "image5.jpg"
       ],
       "houseType": [
-        "apartment",
-        "house",
-        "room",
-        "hotel"
+        "Apartment",
+        "House",
+        "Room",
+        "Hotel"
       ],
       "listAmenities": [
         "Breakfast",
-        "Air conditioning",
-        "Laptop friendly workspace",
-        "Baby seat",
+        "Conditioning",
+        "Workspace",
+        "Baby",
         "Washer",
         "Towels",
         "Fridge"
@@ -80,8 +80,8 @@
         "password5"
       ],
       "userTypes": [
-        "pro",
-        "default"
+        "Pro",
+        "Default"
       ],
       "locations": [
         "48.85661 2.351499",

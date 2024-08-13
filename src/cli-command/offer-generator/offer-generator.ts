@@ -54,6 +54,6 @@ export default class OfferGenerate implements OfferGeneratorInterface {
       userType,
       latitude,
       longitude
-    ].join(' \t ');
+    ].join('\t');
   }
 }

@@ -20,25 +20,24 @@ export default class TSVFileReader implements FileReaderInterface {
     if(!this.rawData) {
       return [];
     }
-
     return this.rawData
       .split('\n')
       .filter((row) => row.trim() !== '')
       .map((line) => line.split('\t'))
-      .map(([title, description, date, city, previewImage, photosH, isPremium, isFavorite, houseType, numberRooms, numberGuests, rentPrice, listAmenities, name, email, avatar, password, userType,  latitude, longitude]) => ({
+      .map(([title, description, date, city, previewImage, photos, isPremium, isFavorite, houseType, numberRooms, numberGuests, rentPrice, listAmenities, name, email, avatar, password, userType,  latitude, longitude]) => ({
         title,
         description,
         date: new Date(date),
         city: CitiesName[city as 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf'],
         previewImage,
-        photosHouses: photosH.split(';').map((photo)=>(photo)),
+        photosHouses: photos.split(';').map((photo)=>(photo)),
         isPremium: JSON.parse(isPremium),
         isFavorite: Number(isFavorite),
         houseType: HouseType[houseType as 'Room' | 'Apartment' | 'House' | 'Hotel'],
         numberRooms: Number(numberRooms),
         numberGuests: Number(numberGuests),
         rentPrice:Number(rentPrice),
-        listAmenities: listAmenities.split(';').map((item)=>(Comforts[item as 'Breakfast' | 'AirConditioning' | 'Workspace' | 'BabySeat' | 'Washer' | 'Towels' | 'Fridge'])),
+        listAmenities: listAmenities.split(';').map((item)=>(Comforts[item as 'Breakfast' | 'Conditioning' | 'Workspace' | 'Baby' | 'Washer' | 'Towels' | 'Fridge'])),
         user:{name, email, avatar, password, userType: UserRole[userType as 'Default' | 'Pro']},
         locations:{latitude: Number(latitude), longitude: Number(longitude)}
       }));

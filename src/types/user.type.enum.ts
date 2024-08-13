@@ -1,4 +1,4 @@
 export enum UserRole {
-  Default = 'Обычный',
+  Default = 'Default',
   Pro = 'Pro'
 }
