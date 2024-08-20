@@ -21,6 +21,7 @@ export default class CLIApplication {
       return acc;
     }, parsedCommand);
   }
+  //Регистрация комманд
 
   public registerCommands(commandList: CliCommandInterface[]): void {
     commandList.reduce((acc, Command) => {

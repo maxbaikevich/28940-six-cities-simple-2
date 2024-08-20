@@ -1,5 +1,5 @@
 // import {appendFile} from 'fs/promises';
-import  TSVFileWriter from '../common/file-writer/tsv-file-writer.js'
+import  TSVFileWriter from '../common/file-writer/tsv-file-writer.js';
 import got from 'got';
 import {MockData} from '../types/mock-data.type.js';
 import { CliCommandInterface } from './cli-command.interface.js';

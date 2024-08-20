@@ -6,6 +6,7 @@ import {createOffer, getErrorMassage} from '../utils/common.js';
 export default class ImportCommand implements CliCommandInterface {
   public readonly name = '--import';
   private onLine(line: string) {
+    console.log('line', line );
     const offer = createOffer(line);
     console.log(offer);
   }
