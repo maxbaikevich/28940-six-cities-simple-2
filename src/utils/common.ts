@@ -1,4 +1,4 @@
-
+import cripto from 'crypto';
 import {CitiesName} from '../types/sity.type.enum.js';
 import {HouseType} from '../types/house.type.enum.js';
 import {Offer} from '../types/offer.type.js';
