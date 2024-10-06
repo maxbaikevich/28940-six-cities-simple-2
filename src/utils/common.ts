@@ -6,7 +6,7 @@ import {Comforts} from '../types/comfort.type.enum.js';
 import {UserRole} from '../types/user.type.enum.js';
 export const createOffer = (row:string)=> {
   const tokens = row.replace('\n', '').split('\t');
-  const [title, description, date, city, previewImage, photos, isPremium, isFavorite, houseType, numberRooms, numberGuests, rentPrice, listAmenities, name, email, avatar, password, userType,  latitude, longitude] = tokens;
+  const [title, description, date, city, previewImage, photos, isPremium, isFavorite, houseType, numberRooms, numberGuests, rentPrice, listAmenities, name, email, avatar, userType,  latitude, longitude] = tokens;
   return {
     title,
     description,
@@ -21,8 +21,13 @@ export const createOffer = (row:string)=> {
     numberGuests: Number(numberGuests),
     rentPrice:Number(rentPrice),
     listAmenities: listAmenities.split(';').map((item)=>(Comforts[item as 'Breakfast' | 'Conditioning' | 'Workspace' | 'Baby' | 'Washer' | 'Towels' | 'Fridge'])),
-    user:{name, email, avatar, password, userType: UserRole[userType as 'Default' | 'Pro']},
+    user:{name, email, avatar, userType: UserRole[userType as 'Default' | 'Pro']},
     locations:{latitude: Number(latitude), longitude: Number(longitude)}
   } as Offer;
 };
 export const getErrorMassage = (error: unknown): string => error instanceof Error ? error.message : '';
+
+export const createSHA256 = (line: string, salt: string): string => {
+  const shaHasher = cripto.createHmac('sha256', salt);
+  return shaHasher.update(line).digest('hex');
+};

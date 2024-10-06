@@ -27,7 +27,6 @@ export default class OfferGenerate implements OfferGeneratorInterface {
     const name = getRandomItem<string>(this.mockData.names);
     const email = getRandomItem<string>(this.mockData.emails);
     const avatar = getRandomItem<string>(this.mockData.avatars);
-    const password = getRandomItem<string>(this.mockData.passwords);
     const userType = getRandomItem<string>(this.mockData.userTypes);
     const locations = getRandomItem<string>(this.mockData.locations);
     const [latitude, longitude] = locations.split(' ');
@@ -50,7 +49,6 @@ export default class OfferGenerate implements OfferGeneratorInterface {
       name,
       email,
       avatar,
-      password,
       userType,
       latitude,
       longitude

@@ -12,6 +12,8 @@ import UserService from './modules/user/user.service.js';
 import { UserServiceInterface } from './modules/user/user-service.interface.js';
 import { types } from '@typegoose/typegoose';
 import { UserEntity, UserModel } from './modules/user/user.entity.js';
+import { OfferEntity, OfferModel} from './modules/offer/offer.entity.js';
+import { CommentEntity, CommentModel } from './modules/commet/comment.entity.js';
 
 
 const applicationContainer = new Container();
@@ -21,5 +23,7 @@ applicationContainer.bind<ConfigInterface>(Component.ConfigInterface).to(ConfigS
 applicationContainer.bind<DatabaseInterface>(Component.DatabaseInterface).to(DatabaseService).inSingletonScope();
 applicationContainer.bind<UserServiceInterface>(Component.UserServiceInterface).to(UserService).inSingletonScope();
 applicationContainer.bind<types.ModelType<UserEntity>>(Component.UserModel).toConstantValue(UserModel);
+applicationContainer.bind<types.ModelType<OfferEntity>>(Component.OfferModel).toConstantValue(OfferModel);
+applicationContainer.bind<types.ModelType<CommentEntity>>(Component.CommentModel).toConstantValue(CommentModel);
 const application = applicationContainer.get<Application>(Component.Application);
 await application.init();
