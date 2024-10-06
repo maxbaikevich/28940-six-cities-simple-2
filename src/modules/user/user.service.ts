@@ -6,11 +6,10 @@ import { UserServiceInterface } from './user-service.interface.js';
 import { LoggerInterface } from '../../common/logger/logger.interface.js';
 import {Component} from '../../types/component.type.js';
 
-
 @injectable()
 export default class UserService implements UserServiceInterface {
   constructor(
-    @inject(Component.LoggerInterface) private logger: LoggerInterface,
+    @inject(Component.LoggerInterface) private readonly logger: LoggerInterface,
     @inject(Component.UserModel) private readonly userModel: types.ModelType<UserEntity>
   ){}
 
@@ -19,7 +18,7 @@ export default class UserService implements UserServiceInterface {
     user.setPassword(dto.password, salt);
 
     const result = await this.userModel.create(user);
-    this.logger.info(`New user create: ${user.email}`);
+    this.logger.info(`New offer created: ${user.email}`);
 
     return result;
   }

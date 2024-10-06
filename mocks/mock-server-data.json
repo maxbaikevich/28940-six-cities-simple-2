@@ -72,13 +72,6 @@
         "avatar4.jpg",
         "avatar5.jpg"
       ],
-      "passwords": [
-        "password1",
-        "password2",
-        "password3",
-        "password4",
-        "password5"
-      ],
       "userTypes": [
         "Pro",
         "Default"
