@@ -5,6 +5,9 @@ import CreateOfferDto from './dto/create-offer.dto.js';
 import { OfferServiceInteface } from './offer-service.interface.js';
 import { LoggerInterface } from '../../common/logger/logger.interface.js';
 import {Component} from '../../types/component.type.js';
+import UpdateOfferDto from './dto/update-offer.dto.js';
+import { DEFAULT_OFFER_COUNT } from './offer.constant';
+import { SortType } from '../../types/sort-type.enum';
 
 
 @injectable()
@@ -22,5 +25,32 @@ export default class OfferSevice implements OfferServiceInteface {
 
   public async findById(offerId: string): Promise<DocumentType<OfferEntity> | null> {
     return this.OfferModel.findById(offerId).exec();
+  }
+
+  public async updateById(offerId: string, dto: UpdateOfferDto): Promise<DocumentType<OfferEntity> | null> {
+    return this.OfferModel
+      .findByIdAndUpdate(offerId, dto, {new: true})
+      .populate(['userId',])
+      .exec();
+  }
+
+  public async deliteById(offerId:string): Promise<DocumentType<OfferEntity> | null>{
+    return this.OfferModel.findByIdAndDelete(offerId).exec();
+  }
+
+  public async find(count?:number): Promise<DocumentType<OfferEntity>[]> {
+    const limit = count ?? DEFAULT_OFFER_COUNT;
+    return this.OfferModel
+      .find()
+      .sort({createdAt: SortType.Down})
+      .limit(limit)
+      .exec();
+  }
+
+  public async incCommentCount(offerId: string): Promise<DocumentType<OfferEntity> | null> {
+    return this.OfferModel
+      .findByIdAndUpdate(offerId, {'$inc': {
+        commentCount: 1,
+      }}).exec();
   }
 }
