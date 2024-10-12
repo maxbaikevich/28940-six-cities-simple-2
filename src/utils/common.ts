@@ -4,6 +4,8 @@ import {HouseType} from '../types/house.type.enum.js';
 import {Offer} from '../types/offer.type.js';
 import {Comforts} from '../types/comfort.type.enum.js';
 import {UserRole} from '../types/user.type.enum.js';
+import { plainToInstance } from 'class-transformer';
+import { ClassConstructor } from 'class-transformer';
 export const createOffer = (row:string)=> {
   const tokens = row.replace('\n', '').split('\t');
   const [title, description, date, city, previewImage, photos, isPremium, isFavorite, houseType, numberRooms, numberGuests, rentPrice, listAmenities, name, email, avatar, userType,  latitude, longitude] = tokens;
@@ -31,3 +33,11 @@ export const createSHA256 = (line: string, salt: string): string => {
   const shaHasher = cripto.createHmac('sha256', salt);
   return shaHasher.update(line).digest('hex');
 };
+
+export const fillDTO = <T, V>(someDTO: ClassConstructor<T>, plainObject: V) =>
+  plainToInstance(someDTO, plainObject, {excludeExtraneousValues: true});
+
+export const createErrorObject = (message: string) => ({
+  error: message,
+});
+

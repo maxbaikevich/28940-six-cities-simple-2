@@ -9,5 +9,5 @@ export interface OfferServiceInteface {
     updateById(offerId: string, dto: UpdateOfferDto): Promise<DocumentType<OfferEntity> | null>;
     deliteById(offerId: string): Promise<DocumentType<OfferEntity> | null>
     find(count: number):Promise<DocumentType<OfferEntity>[]>
-    incCommentCount(offerId: string):Promise<DocumentType<OfferEntity> |null>
+    incCommentCount(offerId: string):Promise<DocumentType<OfferEntity> | null>
 }
