@@ -1,4 +1,4 @@
-import {IsArray, IsEnum, IsInt, Max,  Min, IsBoolean, Length, IsString, IsNotEmpty, ArrayMinSize, ArrayMaxSize, IsNumber, ValidateNested, MinLength, MaxLength, IsDateString} from 'class-validator';
+import {IsEnum, MinLength, MaxLength, IsDateString} from 'class-validator';
 import {Coordinates} from '../../../types/coorfinates.type.js';
 import {HouseType} from '../../../types/house.type.enum.js';
 import {CitiesName} from '../../../types/sity.type.enum.js';
