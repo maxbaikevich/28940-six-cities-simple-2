@@ -6,8 +6,8 @@ import { OfferServiceInteface } from './offer-service.interface.js';
 import { LoggerInterface } from '../../common/logger/logger.interface.js';
 import {Component} from '../../types/component.type.js';
 import UpdateOfferDto from './dto/update-offer.dto.js';
-import { DEFAULT_OFFER_COUNT } from './offer.constant';
-import { SortType } from '../../types/sort-type.enum';
+import { DEFAULT_OFFER_COUNT } from './offer.constant.js';
+import { SortType } from '../../types/sort-type.enum.js';
 
 
 @injectable()
@@ -24,13 +24,14 @@ export default class OfferSevice implements OfferServiceInteface {
   }
 
   public async findById(offerId: string): Promise<DocumentType<OfferEntity> | null> {
-    return this.OfferModel.findById(offerId).exec();
+    console.log('offerService',offerId);
+    return this.OfferModel.findById(offerId).populate(['userId']).exec();
   }
 
   public async updateById(offerId: string, dto: UpdateOfferDto): Promise<DocumentType<OfferEntity> | null> {
     return this.OfferModel
       .findByIdAndUpdate(offerId, dto, {new: true})
-      .populate(['userId',])
+      .populate(['userId'])
       .exec();
   }
 
@@ -42,6 +43,7 @@ export default class OfferSevice implements OfferServiceInteface {
     const limit = count ?? DEFAULT_OFFER_COUNT;
     return this.OfferModel
       .find()
+      .populate(['userId'])
       .sort({createdAt: SortType.Down})
       .limit(limit)
       .exec();

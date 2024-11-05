@@ -15,6 +15,7 @@ export default class application {
     @inject(Component.ConfigInterface) private config: ConfigInterface,
     @inject(Component.DatabaseInterface) private databaseClient: DatabaseInterface,
     @inject(Component.UserController) private userController: ControllerInterface,
+    @inject(Component.OfferController) private offerController: ControllerInterface,
     @inject(Component.ExeptionFilterInterface) private exeptionFilter: ExeptionFilterInterface,
   ) {
     this.expressApp = express();
@@ -22,6 +23,7 @@ export default class application {
 
   public initRoutes() {
     this.expressApp.use('/user', this.userController.router);
+    this.expressApp.use('/offers', this.offerController.router);
   }
 
   public initMiddelewaer() {
