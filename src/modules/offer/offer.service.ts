@@ -55,4 +55,8 @@ export default class OfferSevice implements OfferServiceInteface {
         commentCount: 1,
       }}).exec();
   }
+
+  public async exists(documentId: string): Promise<boolean> {
+    return (await this.OfferModel.exists({ _id: documentId })) !== null;
+  }
 }
