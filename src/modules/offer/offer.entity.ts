@@ -2,7 +2,7 @@
 import {CitiesName}from '../../types/sity.type.enum.js';
 import {HouseType} from '../../types/house.type.enum.js';
 import {Comforts} from '../../types/comfort.type.enum.js';
-import {Coordinates} from '../../types/coorfinates.type';
+import {Coordinates} from '../../types/coorfinates.type.js';
 import { UserEntity } from '../user/user.entity.js';
 import typegoose, {getModelForClass, defaultClasses, Ref} from '@typegoose/typegoose';
 
@@ -40,7 +40,7 @@ export class OfferEntity extends defaultClasses.TimeStamps{
   public previewImage!: string;
 
 
-  @prop({ set: (val: string[]) => val.join(' '), get: (val: string) => val.split(' '), type: String }) // requires explicit setting of "PropType"
+  @prop() // requires explicit setting of "PropType"
   public photosHouses?: string[];
 
   @prop()
@@ -87,8 +87,8 @@ export class OfferEntity extends defaultClasses.TimeStamps{
 
   @prop(
     {
+      required: true,
       ref: UserEntity,
-      required: true
     }
   )
   public userId!: Ref<UserEntity>;
